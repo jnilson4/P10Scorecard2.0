@@ -15,15 +15,19 @@ public class ScorePanel extends JPanel
 	private ImageIcon backgroundImage;
 	private JLabel imageText;
 	private JTextArea instructions;
+	private JButton nextPage;
 	
 	public ScorePanel(ScoreController baseController)
 	{
 		super();
 		this.baseController = baseController;
 		this.baseLayout = new SpringLayout();
+		this.nextPage = new JButton("Proceed to Setup");
+		baseLayout.putConstraint(SpringLayout.WEST, nextPage, 275, SpringLayout.WEST, this);
 		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
 		this.instructions = new JTextArea(15, 55);
+		baseLayout.putConstraint(SpringLayout.SOUTH, nextPage, 0, SpringLayout.SOUTH, instructions);
 		baseLayout.putConstraint(SpringLayout.SOUTH, instructions, -27, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, instructions, -40, SpringLayout.EAST, this);
 		instructions.setFont(new Font("PingFang HK", Font.PLAIN, 13));
@@ -38,6 +42,7 @@ public class ScorePanel extends JPanel
 		this.setLayout(baseLayout);
 		this.setPreferredSize(new Dimension(700,400));
 		this.setBackground(Color.RED);
+		this.add(nextPage);
 		this.add(instructions);
 		this.add(imageText);
 		instructions.setForeground(Color.WHITE);
