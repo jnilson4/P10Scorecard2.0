@@ -12,12 +12,21 @@ public class ScorePanel extends JPanel
 {
 	private SpringLayout baseLayout;
 	private ScoreController baseController;
+	private ImageIcon backgroundImage;
+	private JLabel imageText;
+	private JTextArea instructions;
 	
 	public ScorePanel(ScoreController baseController)
 	{
 		super();
 		this.baseController = baseController;
 		this.baseLayout = new SpringLayout();
+		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
+		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
+		this.instructions = new JTextArea(15, 55);
+		baseLayout.putConstraint(SpringLayout.SOUTH, instructions, -27, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, instructions, -40, SpringLayout.EAST, this);
+		instructions.setFont(new Font("PingFang HK", Font.PLAIN, 13));
 		
 		setupPanel();
 		setupLayout();
@@ -26,9 +35,20 @@ public class ScorePanel extends JPanel
 	
 	private void setupPanel()
 	{
-		this.setPreferredSize(new Dimension(700,400));
 		this.setLayout(baseLayout);
+		this.setPreferredSize(new Dimension(700,400));
 		this.setBackground(Color.RED);
+		this.add(instructions);
+		this.add(imageText);
+		instructions.setForeground(Color.WHITE);
+		instructions.setEditable(false);
+		instructions.setLineWrap(true);
+		instructions.setWrapStyleWord(true);
+		instructions.setOpaque(false);
+		instructions.setText("Welcome to the Phase 10 Scorecard! Here are a few tips for using our scorecard!\n\n1. At the end of each round, enter in score the player got. If the player did not have any points, simply leave theirs blank. If the player passed the phase, be sure to check the \"Passed Phase\" box.\n\n2. Once you have entered in the points and checked if they passed their phase, please click score round. This will add their points and advance their phase if they passed it.\n\n3. If you enter in a score incorrectly or if you check the phase box and they didn't actually pass their phase, press on the \"Manual Override\" button. This will allow you to change the players score and phase manually. Please be careful while using this function.");
+
+		
+		//imageText.setComponentZOrder(instructions, -1);
 	}
 	
 	private void setupLayout()
