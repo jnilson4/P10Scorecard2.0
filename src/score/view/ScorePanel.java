@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import score.controller.ScoreController;
 import java.awt.Font;
 import java.awt.event.*;
+import java.awt.Image;
 
 public class ScorePanel extends JPanel
 {
@@ -25,6 +26,7 @@ public class ScorePanel extends JPanel
 	
 	private void setupPanel()
 	{
+		this.setPreferredSize(new Dimension(700,400));
 		this.setLayout(baseLayout);
 		this.setBackground(Color.RED);
 	}

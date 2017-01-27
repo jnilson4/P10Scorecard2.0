@@ -22,7 +22,7 @@ public class ScoreFrame extends JFrame
 	{
 		this.setContentPane(appPanel);
 		this.setTitle("Phase 10 Scorecard v. 2.0");
-		this.setSize(new Dimension(600,300));
+		this.setSize(new Dimension(700,400));
 		this.setVisible(true);
 		this.setResizable(false);
 	}
