@@ -7,13 +7,13 @@ import score.controller.ScoreController;
 public class ScoreFrame extends JFrame
 {
 	private ScoreController baseController;
-	private ScorePanel appPanel;
+	private InstructionPanel appPanel;
 	
 	public ScoreFrame(ScoreController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		this.appPanel = new ScorePanel(baseController);
+		this.appPanel = new InstructionPanel(baseController);
 		
 		this.setupFrame();
 	}
