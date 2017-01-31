@@ -104,8 +104,8 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, -29, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, submitNames, -88, SpringLayout.WEST, nextButton);
 	
-		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark.jpg"));
-		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
+//		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark.jpg"));
+//		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
 		
 		setupPanel();
 		setupLayout();
