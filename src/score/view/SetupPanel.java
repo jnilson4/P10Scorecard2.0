@@ -97,12 +97,12 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, player8Box, -56, SpringLayout.EAST, this);
 		
 		this.nextButton = new JButton("Continue to Scorecard");
-		baseLayout.putConstraint(SpringLayout.NORTH, nextButton, 40, SpringLayout.SOUTH, player8Box);
+		baseLayout.putConstraint(SpringLayout.NORTH, nextButton, 21, SpringLayout.SOUTH, player8Box);
 		baseLayout.putConstraint(SpringLayout.EAST, nextButton, -10, SpringLayout.EAST, this);
 		this.submitNames = new JButton("Submit Names");
 		baseLayout.putConstraint(SpringLayout.NORTH, submitNames, 0, SpringLayout.NORTH, nextButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, submitNames, -90, SpringLayout.WEST, nextButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, -29, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, submitNames, -88, SpringLayout.WEST, nextButton);
 	
 		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark.jpg"));
 		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
@@ -139,7 +139,7 @@ public class SetupPanel extends JPanel
 		this.add(nextButton);
 		this.add(submitNames);
 		
-		this.add(imageText);
+//		this.add(imageText);
 
 	}
 	
@@ -167,6 +167,66 @@ public class SetupPanel extends JPanel
 	
 	private void setupListeners()
 	{
-		
+		submitNames.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent selection)
+			{
+				String [] names = new String [8];
+				
+				names[0] = player1Box.getText();
+				names[1] = player2Box.getText();
+				names[2] = player3Box.getText();
+				names[3] = player4Box.getText();
+				names[4] = player5Box.getText();
+				names[5] = player6Box.getText();
+				names[6] = player7Box.getText();
+				names[7] = player8Box.getText();
+				
+				player1Label.setText(names[0]);
+				player2Label.setText(names[1]);
+				player3Label.setText(names[2]);
+				player4Label.setText(names[3]);
+				player5Label.setText(names[4]);
+				player6Label.setText(names[5]);
+				player7Label.setText(names[6]);
+				player8Label.setText(names[7]);
+				
+				for(int i = 0; i < names.length; i++)
+				{
+					if(names[0].equals(""))
+					{
+						player1Label.setText("Player 1");
+					}
+					if(names[1].equals(""))
+					{
+						player2Label.setText("Player 2");
+					}
+					if(names[2].equals(""))
+					{
+						player3Label.setText("Player 3");
+					}
+					if(names[3].equals(""))
+					{
+						player4Label.setText("Player 4");
+					}
+					if(names[4].equals(""))
+					{
+						player5Label.setText("Player 5");
+					}
+					if(names[5].equals(""))
+					{
+						player6Label.setText("Player 6");
+					}
+					if(names[6].equals(""))
+					{
+						player7Label.setText("Player 7");
+					}
+					if(names[7].equals(""))
+					{
+						player8Label.setText("Player 8");
+					}
+				}
+			}
+		});
 	}
 }
