@@ -15,4 +15,9 @@ public class ScoreController
 	{
 		
 	}
+	
+	public ScoreFrame getFrame()
+	{
+		return baseFrame;
+	}
 }
