@@ -14,8 +14,6 @@ public class InstructionPanel extends JPanel
 	private SpringLayout baseLayout;
 	private ScoreController baseController;
 	
-	private SetupPanel newPanel;
-	
 	private ImageIcon backgroundImage;
 	private JLabel imageText;
 	private JTextArea instructions;
@@ -27,8 +25,6 @@ public class InstructionPanel extends JPanel
 		super();
 		this.baseController = baseController;
 		this.baseLayout = new SpringLayout();
-		
-		this.newPanel = new SetupPanel(baseController);
 		
 		this.nextPage = new JButton("Proceed to Setup");
 		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
@@ -74,7 +70,6 @@ public class InstructionPanel extends JPanel
 			public void actionPerformed(ActionEvent selection)
 			{	
 				baseController.getFrame().setContentPane(new SetupPanel(baseController));
-				validate();
 				repaint();
 			}
 		});

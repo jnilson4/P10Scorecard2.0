@@ -139,7 +139,7 @@ public class SetupPanel extends JPanel
 		this.add(nextButton);
 		this.add(submitNames);
 		
-//		this.add(imageText);
+		this.add(imageText);
 
 	}
 	
