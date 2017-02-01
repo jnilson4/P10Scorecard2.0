@@ -68,6 +68,7 @@ public class SetupPanel extends JPanel
 		
 		this.nextButton = new JButton("Continue to Scorecard");
 		this.submitNames = new JButton("Submit Names");
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, 0, SpringLayout.SOUTH, nextButton);
 	
 //		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark.jpg"));
 //		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
@@ -131,7 +132,6 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, nextButton, 21, SpringLayout.SOUTH, player8Box);
 		baseLayout.putConstraint(SpringLayout.EAST, nextButton, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, submitNames, 0, SpringLayout.NORTH, nextButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, -29, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, submitNames, -88, SpringLayout.WEST, nextButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, player8Box, 0, SpringLayout.NORTH, player4Box);
 		baseLayout.putConstraint(SpringLayout.EAST, player8Label, -99, SpringLayout.WEST, player8Box);

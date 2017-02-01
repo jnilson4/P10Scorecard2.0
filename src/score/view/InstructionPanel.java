@@ -69,7 +69,13 @@ public class InstructionPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selection)
 			{	
-				baseController.getFrame().setContentPane(new SetupPanel(baseController));
+				
+				SetupPanel temp = new SetupPanel(baseController);
+				baseController.getFrame().getContentPane().removeAll();
+				baseController.getFrame().setContentPane(temp);
+//				baseController.getFrame().invalidate();
+				baseController.getFrame().validate();
+//				baseController.getFrame().setContentPane(new SetupPanel(baseController));
 				repaint();
 			}
 		});
