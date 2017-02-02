@@ -61,6 +61,8 @@ public class InstructionPanel extends JPanel
 		instructions.setLineWrap(true);
 		instructions.setWrapStyleWord(true);
 		instructions.setOpaque(false);
+		baseLayout.putConstraint(SpringLayout.NORTH, instructions, 90, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, instructions, 40, SpringLayout.WEST, this);
 	}
 	
 	private void setupListeners()
