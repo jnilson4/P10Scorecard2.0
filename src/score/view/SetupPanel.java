@@ -51,70 +51,30 @@ public class SetupPanel extends JPanel
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
 		
 		this.player1Label = new JLabel("Player 1");
-		baseLayout.putConstraint(SpringLayout.WEST, player1Label, 50, SpringLayout.WEST, this);
 		this.player2Label = new JLabel("Player 2");
-		baseLayout.putConstraint(SpringLayout.SOUTH, player1Label, -37, SpringLayout.NORTH, player2Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player2Label, 50, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player2Label, -192, SpringLayout.SOUTH, this);
 		this.player3Label = new JLabel("Player 3");
-		baseLayout.putConstraint(SpringLayout.NORTH, player3Label, 36, SpringLayout.SOUTH, player2Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player3Label, 0, SpringLayout.WEST, player1Label);
 		this.player4Label = new JLabel("Player 4");
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Label, 36, SpringLayout.SOUTH, player3Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Label, 0, SpringLayout.WEST, player1Label);
 		this.player5Label = new JLabel("Player 5");
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Label, 0, SpringLayout.NORTH, player1Label);
 		this.player6Label = new JLabel("Player 6");
-		baseLayout.putConstraint(SpringLayout.NORTH, player6Label, 0, SpringLayout.NORTH, player2Label);
 		this.player7Label = new JLabel("Player 7");
-		baseLayout.putConstraint(SpringLayout.NORTH, player7Label, 0, SpringLayout.NORTH, player3Label);
 		this.player8Label = new JLabel("Player 8");
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Label, 0, SpringLayout.NORTH, player4Label);
 		
 		this.player1Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Box, -5, SpringLayout.NORTH, player1Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player1Box, 104, SpringLayout.EAST, player1Label);
 		this.player2Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player2Box, -5, SpringLayout.NORTH, player2Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player2Box, 203, SpringLayout.WEST, this);
 		this.player3Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player3Box, -5, SpringLayout.NORTH, player3Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player3Box, 203, SpringLayout.WEST, this);
 		this.player4Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Box, -5, SpringLayout.NORTH, player4Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Box, 203, SpringLayout.WEST, this);
 		this.player5Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Box, -5, SpringLayout.NORTH, player1Label);
 		this.player6Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player6Box, -5, SpringLayout.NORTH, player2Label);
 		this.player7Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player7Box, -5, SpringLayout.NORTH, player3Label);
 		this.player8Box = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Box, -5, SpringLayout.NORTH, player4Label);
 		
 		this.nextButton = new JButton("Continue to Scorecard");
-		baseLayout.putConstraint(SpringLayout.NORTH, nextButton, 359, SpringLayout.NORTH, this);
 		this.submitNames = new JButton("Submit Names");
-		baseLayout.putConstraint(SpringLayout.NORTH, submitNames, 0, SpringLayout.NORTH, nextButton);
-		baseLayout.putConstraint(SpringLayout.WEST, submitNames, 10, SpringLayout.WEST, this);
 	
 		this.setupInstructions = new JTextArea("Enter in the players names next to the corresponding box. Once the names have been entered, press submit names and the names will change on the left of the box.");
-		baseLayout.putConstraint(SpringLayout.WEST, setupInstructions, 32, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, setupInstructions, -15, SpringLayout.NORTH, player1Box);
-		setupInstructions.setColumns(53);
-		setupInstructions.setRows(2);
-		setupInstructions.setForeground(Color.WHITE);
-		setupInstructions.setOpaque(false);
-		setupInstructions.setEditable(false);
-		setupInstructions.setLineWrap(true);
-		setupInstructions.setWrapStyleWord(true);
 		
 		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark2.png"));
 		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
-		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
-//		imageText1.setOpaque(false);
-		
 		
 		setupPanel();
 		setupLayout();
@@ -167,7 +127,6 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, player5Label, -213, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player5Box, 99, SpringLayout.EAST, player5Label);
 		baseLayout.putConstraint(SpringLayout.EAST, player5Box, -56, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, nextButton, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player8Label, -99, SpringLayout.WEST, player8Box);
 		baseLayout.putConstraint(SpringLayout.WEST, player8Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player8Box, -56, SpringLayout.EAST, this);
@@ -180,7 +139,45 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, player8Label, 177, SpringLayout.EAST, player4Box);
 		baseLayout.putConstraint(SpringLayout.WEST, player6Label, 177, SpringLayout.EAST, player2Box);
 		imageText.setForeground(Color.WHITE);
-
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Label, 153, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, player1Label, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Label, 37, SpringLayout.SOUTH, player1Label);
+		baseLayout.putConstraint(SpringLayout.WEST, player2Label, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, player3Label, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, player4Label, 50, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, player3Label, -36, SpringLayout.NORTH, player4Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Label, 0, SpringLayout.NORTH, player1Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Label, 0, SpringLayout.NORTH, player2Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Label, 0, SpringLayout.NORTH, player3Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Label, 0, SpringLayout.NORTH, player4Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Box, -5, SpringLayout.NORTH, player4Label);
+		baseLayout.putConstraint(SpringLayout.SOUTH, player4Label, -31, SpringLayout.NORTH, submitNames);
+		baseLayout.putConstraint(SpringLayout.NORTH, nextButton, 0, SpringLayout.NORTH, submitNames);
+		baseLayout.putConstraint(SpringLayout.WEST, submitNames, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, submitNames, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Box, 148, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, player1Box, 104, SpringLayout.EAST, player1Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Box, -5, SpringLayout.NORTH, player2Label);
+		baseLayout.putConstraint(SpringLayout.WEST, player2Box, 203, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Box, -5, SpringLayout.NORTH, player3Label);
+		baseLayout.putConstraint(SpringLayout.WEST, player3Box, 203, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Box, -5, SpringLayout.NORTH, player4Label);
+		baseLayout.putConstraint(SpringLayout.WEST, player4Box, 203, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Box, -5, SpringLayout.NORTH, player1Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Box, -5, SpringLayout.NORTH, player2Label);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Box, -5, SpringLayout.NORTH, player3Label);
+		baseLayout.putConstraint(SpringLayout.EAST, nextButton, 0, SpringLayout.EAST, imageText1);
+		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, setupInstructions, 32, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, setupInstructions, -15, SpringLayout.NORTH, player1Box);
+		setupInstructions.setColumns(53);
+		setupInstructions.setRows(2);
+		setupInstructions.setForeground(Color.WHITE);
+		setupInstructions.setOpaque(false);
+		setupInstructions.setEditable(false);
+		setupInstructions.setLineWrap(true);
+		setupInstructions.setWrapStyleWord(true);
 	}
 	
 	private void setupListeners()
@@ -251,7 +248,23 @@ public class SetupPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selection)
 			{
-				
+				ScorePanel scorePanel = new ScorePanel(baseController);
+				baseController.getFrame().getContentPane().removeAll();
+				baseController.getFrame().setContentPane(scorePanel);
+				baseController.getFrame().validate();
+				repaint();
+			}
+		});
+
+		imageText1.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent clicked)
+			{
+				InstructionPanel help = new InstructionPanel(baseController);
+				baseController.getFrame().getContentPane().removeAll();
+				baseController.getFrame().setContentPane(help);
+				baseController.getFrame().validate();
+				repaint();
 			}
 		});
 	}
