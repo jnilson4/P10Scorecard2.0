@@ -185,7 +185,7 @@ public class SetupPanel extends JPanel
 		submitNames.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent selection)
-			{
+			{	
 				String [] names = new String [8];
 				
 				names[0] = player1Box.getText();

@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
+import score.model.*;
 
 public class ScorePanel extends JPanel
 {
@@ -54,6 +55,8 @@ public class ScorePanel extends JPanel
 	private JCheckBox player6Check;
 	private JCheckBox player7Check;
 	private JCheckBox player8Check;
+
+	private String [] names;
 	
 	public ScorePanel(ScoreController baseController)
 	{
@@ -65,11 +68,7 @@ public class ScorePanel extends JPanel
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
 		
 		this.setupButton = new JButton("Return to Setup");
-		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
-		this.scoreRound = new JButton("Score Round");
-		baseLayout.putConstraint(SpringLayout.NORTH, scoreRound, 0, SpringLayout.NORTH, setupButton);
-		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
+		this.scoreRound = new JButton("Score Round");		
 		
 		setupPanel();
 		setupLayout();
@@ -90,7 +89,10 @@ public class ScorePanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.NORTH, scoreRound, 0, SpringLayout.NORTH, setupButton);
+		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
 	}
 	
 	private void setupListeners()
