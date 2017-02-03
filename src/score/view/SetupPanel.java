@@ -206,6 +206,8 @@ public class SetupPanel extends JPanel
 				player7Label.setText(names[6]);
 				player8Label.setText(names[7]);
 				
+				baseController.giveNames(names);
+				
 				for(int i = 0; i < names.length; i++)
 				{
 					if(names[0].equals(""))
