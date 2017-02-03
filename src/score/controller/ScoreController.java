@@ -11,7 +11,6 @@ public class ScoreController
 	public ScoreController()
 	{
 		update = new Game();
-		
 		baseFrame = new ScoreFrame(this);
 	}
 	
@@ -27,13 +26,13 @@ public class ScoreController
 	
 	public void update(String[] names, int[] points, int[] phase)
 	{	
-//		for(int i = 0; i < player.length; i++)
-//		{
-//			if(player[i].equals(""))
-//			{
-//				
-//			}
-//		}
+		for(int i = 0; i < names.length; i++)
+		{
+			if(names[i] == null || names[i].equals(""))
+			{
+				names[i] = "--"; 
+			}
+		}
 	}
 	
 	public void giveNames(String[] names)
