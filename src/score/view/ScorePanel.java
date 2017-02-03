@@ -69,6 +69,7 @@ public class ScorePanel extends JPanel
 	{
 		super();
 		this.baseController = baseController;
+		String [] playerNames = baseController.getNames();
 		this.baseLayout = new SpringLayout();
 		
 		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
@@ -77,7 +78,7 @@ public class ScorePanel extends JPanel
 		this.setupButton = new JButton("Return to Setup");
 		this.scoreRound = new JButton("Score Round");
 		
-		this.player1 = new JLabel("Player 1");
+		this.player1 = new JLabel(playerNames[0]);
 		baseLayout.putConstraint(SpringLayout.WEST, player1, 21, SpringLayout.WEST, this);
 		player1.setForeground(Color.WHITE);
 		this.player2 = new JLabel("Player 2");

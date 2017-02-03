@@ -58,4 +58,15 @@ public class ScoreController
 			update.getPlayer()[i].setPhase(phase[i]);
 		}
 	}
+	
+	public String [] getNames()
+	{
+		String [] names = new String [update.getPlayer().length];
+		for(int i = 0; i < names.length; i++)
+		{
+			names[i] = update.getPlayer()[i].getName();
+		}
+		
+		return names;
+	}
 }
