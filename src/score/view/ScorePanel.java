@@ -252,6 +252,13 @@ public class ScorePanel extends JPanel
 	
 	private void setupListeners()
 	{
+		scoreRound.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent selection)
+			{
+				
+			}
+		});
 		
 	}
 }
