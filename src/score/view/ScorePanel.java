@@ -55,8 +55,6 @@ public class ScorePanel extends JPanel
 	private JCheckBox player6Check;
 	private JCheckBox player7Check;
 	private JCheckBox player8Check;
-
-	private String [] names;
 	
 	public ScorePanel(ScoreController baseController)
 	{
