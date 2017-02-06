@@ -2,7 +2,7 @@ package score.view;
 
 import javax.swing.*;
 import score.controller.ScoreController;
-import javax.swing.SpringLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,6 +16,11 @@ public class ScorePanel extends JPanel
 	
 	private ImageIcon backgroundImage;
 	private JLabel imageText;
+	private JLabel roundNumber;
+	private int round;
+	
+	private ImageIcon helpButton;
+	private JLabel imageText1;
 	
 	private JButton setupButton;
 	private JButton scoreRound;
@@ -85,6 +90,11 @@ public class ScorePanel extends JPanel
 		
 		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
+		this.round = 1;
+		this.roundNumber = new JLabel("ROUND " + round);
+		
+		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark2.png"));
+		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
 		
 		this.setupButton = new JButton("Return to Setup");
 		this.scoreRound = new JButton("Score Round");
@@ -162,6 +172,9 @@ public class ScorePanel extends JPanel
 		this.add(scoreRound);
 		this.add(manualOverride);
 		
+		this.add(roundNumber);
+		this.add(imageText1);
+		
 		this.add(phaseC1);
 		this.add(pointsC1);
 		this.add(addPointsC1);
@@ -223,6 +236,10 @@ public class ScorePanel extends JPanel
 	
 	private void setupLayout()
 	{
+		baseLayout.putConstraint(SpringLayout.NORTH, roundNumber, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, roundNumber, 12, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, manualOverride, 126, SpringLayout.EAST, setupButton);
 		baseLayout.putConstraint(SpringLayout.SOUTH, manualOverride, -10, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, scoreRound, -10, SpringLayout.SOUTH, this);
@@ -340,6 +357,7 @@ public class ScorePanel extends JPanel
 	
 	private void setupGUI()
 	{
+		roundNumber.setForeground(Color.WHITE);
 		pointsC1.setOpaque(false);
 		addPointsC1.setOpaque(false);
 		completePC1.setOpaque(false);
@@ -436,7 +454,8 @@ public class ScorePanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent selection)
 			{
-				
+				round += 1;
+				roundNumber.setText("ROUND " + round);
 			}
 		});
 		
@@ -453,6 +472,17 @@ public class ScorePanel extends JPanel
 			}
 		});
 		
+		imageText1.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent clicked)
+			{
+				InstructionPanel help = new InstructionPanel(baseController);
+				baseController.getFrame().getContentPane().removeAll();
+				baseController.getFrame().setContentPane(help);
+				baseController.getFrame().validate();
+				repaint();
+			}
+		});
 	}
 	
 	//I like the idea of a score card, just get that trash code outta here
