@@ -69,4 +69,14 @@ public class ScoreController
 		
 		return names;
 	}
+	
+	public void addPoints()
+	{
+		
+	}
+	
+	public void addPhase()
+	{
+		
+	}
 }
