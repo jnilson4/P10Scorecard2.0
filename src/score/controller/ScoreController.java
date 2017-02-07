@@ -2,6 +2,7 @@ package score.controller;
 
 import score.view.ScoreFrame;
 import score.model.*;
+import javax.swing.JOptionPane;
 
 public class ScoreController
 {
@@ -47,7 +48,7 @@ public class ScoreController
 	{
 		for(int i = 0; i < points.length; i++)
 		{
-			update.getPlayer()[i].setPoints(points[i]);
+			update.getPlayer()[i].setPoints(update.getPlayer()[i].getPoints() + points[i]);
 		}
 	}
 	
@@ -70,17 +71,32 @@ public class ScoreController
 		return names;
 	}
 	
-	public void addPoints(int [] points)
+	public int [] getPoints()
 	{
-		int currentPoints = 0;
+		int [] points = new int [update.getPlayer().length];
 		for(int i = 0; i < points.length; i++)
 		{
-			points[i] = currentPoints + points[i];
+			points[i] = update.getPlayer()[i].getPoints();
 		}
-	}
-	
-	public void addPhase()
-	{
 		
+		return points;
+	}
+
+	public boolean isValidInteger(String input)
+	{
+		boolean isValid = false;
+		
+		try
+		{
+			int successful = Integer.parseInt(input);
+			isValid = true;
+			
+		}
+		catch(NumberFormatException error)
+		{
+			JOptionPane.showMessageDialog(baseFrame, "Please make sure the scores entered only contain numbers.");
+		}
+		
+		return isValid;
 	}
 }

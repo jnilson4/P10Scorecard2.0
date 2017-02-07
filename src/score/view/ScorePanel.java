@@ -4,6 +4,7 @@ import javax.swing.*;
 import score.controller.ScoreController;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
@@ -164,6 +165,7 @@ public class ScorePanel extends JPanel
 	
 	private void setupPanel()
 	{
+		
 		this.setLayout(baseLayout);
 		this.setPreferredSize(new Dimension(700,400));
 		this.setBackground(Color.RED);
@@ -457,10 +459,43 @@ public class ScorePanel extends JPanel
 				round += 1;
 				roundNumber.setText("ROUND " + round);
 				
+				int [] roundPoints = new int [8];
 				
+				for(Component temp : getComponents())
+				{
+					if(temp instanceof JTextField)
+					{
+						if(((JTextField) temp).getText().equals(""))
+						{
+							((JTextField) temp).setText("0");
+						}
+					}
+				}
+				
+				roundPoints[0] = Integer.parseInt(player1Entry.getText());
+				roundPoints[1] = Integer.parseInt(player2Entry.getText());
+				roundPoints[2] = Integer.parseInt(player3Entry.getText());
+				roundPoints[3] = Integer.parseInt(player4Entry.getText());
+				roundPoints[4] = Integer.parseInt(player5Entry.getText());
+				roundPoints[5] = Integer.parseInt(player6Entry.getText());
+				roundPoints[6] = Integer.parseInt(player7Entry.getText());
+				roundPoints[7] = Integer.parseInt(player8Entry.getText());
+				
+				baseController.givePoints(roundPoints);
+				
+				player1Points.setText(Integer.toString(baseController.getPoints()[0]));
+				
+				boolean [] passedPhase = new boolean [8];
+				passedPhase[0] = player1Check.isSelected();
+				passedPhase[1] = player2Check.isSelected();
+				passedPhase[2] = player3Check.isSelected();
+				passedPhase[3] = player4Check.isSelected();
+				passedPhase[4] = player5Check.isSelected();
+				passedPhase[5] = player6Check.isSelected();
+				passedPhase[6] = player7Check.isSelected();
+				passedPhase[7] = player8Check.isSelected();
 			}
 		});
-		
 		
 		setupButton.addActionListener(new ActionListener()
 		{
@@ -485,17 +520,15 @@ public class ScorePanel extends JPanel
 				repaint();
 			}
 		});
+		
+		manualOverride.addActionListener(new ActionListener()	
+		{
+			public void actionPerformed(ActionEvent clicked)
+			{
+				
+			}
+		});
 	}
-	
-//	public void addPoints(int [] points)
-//	{
-//		currentPoints = points.getPoints();
-//		
-//		for(int i = 0; i < points.length; i++)
-//		{
-//			
-//		}
-//	}
 	
 	//I like the idea of a score card, just get that trash code outta here
 	//good code in general-easy to understand and clean
