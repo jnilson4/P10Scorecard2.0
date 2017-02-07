@@ -456,6 +456,8 @@ public class ScorePanel extends JPanel
 			{
 				round += 1;
 				roundNumber.setText("ROUND " + round);
+				
+				
 			}
 		});
 		
@@ -484,6 +486,16 @@ public class ScorePanel extends JPanel
 			}
 		});
 	}
+	
+//	public void addPoints(int [] points)
+//	{
+//		currentPoints = points.getPoints();
+//		
+//		for(int i = 0; i < points.length; i++)
+//		{
+//			
+//		}
+//	}
 	
 	//I like the idea of a score card, just get that trash code outta here
 	//good code in general-easy to understand and clean

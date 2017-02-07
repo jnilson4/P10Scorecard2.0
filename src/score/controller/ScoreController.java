@@ -70,9 +70,13 @@ public class ScoreController
 		return names;
 	}
 	
-	public void addPoints()
+	public void addPoints(int [] points)
 	{
-		
+		int currentPoints = 0;
+		for(int i = 0; i < points.length; i++)
+		{
+			points[i] = currentPoints + points[i];
+		}
 	}
 	
 	public void addPhase()
