@@ -52,7 +52,7 @@ public class ScoreController
 		}
 	}
 	
-	public void givePhases(int[] phase)
+	public void givePhases(int [] phase)
 	{
 		for(int i = 0; i < phase.length; i++)
 		{
@@ -81,7 +81,18 @@ public class ScoreController
 		
 		return points;
 	}
-
+	
+	public int [] getPhases()
+	{
+		int [] phases = new int [update.getPlayer().length];
+		for(int i = 0; i < phases.length; i++)
+		{
+			phases[i] = update.getPlayer()[i].getPhase();
+		}
+		
+		return phases;
+	}
+	
 	public boolean isValidInteger(String input)
 	{
 		boolean isValid = false;

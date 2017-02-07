@@ -102,7 +102,6 @@ public class ScorePanel extends JPanel
 		this.manualOverride = new JButton("Manual Override");
 		
 		this.phaseC1 = new JTextArea("Current         Phase");
-		this.player8 = new JLabel(playerNames[7]);
 		this.pointsC1 = new JTextArea("Total Points");
 		this.addPointsC1 = new JTextArea("Round Points");
 		this.completePC1 = new JTextArea("  Phase Complete?");
@@ -119,6 +118,7 @@ public class ScorePanel extends JPanel
 		this.player5 = new JLabel(playerNames[4]);
 		this.player6 = new JLabel(playerNames[5]);
 		this.player7 = new JLabel(playerNames[6]);
+		this.player8 = new JLabel(playerNames[7]);
 		
 		this.player1Points = new JLabel("0");
 		this.player2Points = new JLabel("0");
@@ -233,7 +233,6 @@ public class ScorePanel extends JPanel
 		this.add(player8Phase);
 		
 		this.add(imageText);
-
 	}
 	
 	private void setupLayout()
@@ -459,6 +458,7 @@ public class ScorePanel extends JPanel
 				round += 1;
 				roundNumber.setText("ROUND " + round);
 				
+				//Points
 				int [] roundPoints = new int [8];
 				
 				for(Component temp : getComponents())
@@ -484,8 +484,39 @@ public class ScorePanel extends JPanel
 				baseController.givePoints(roundPoints);
 				
 				player1Points.setText(Integer.toString(baseController.getPoints()[0]));
+				player2Points.setText(Integer.toString(baseController.getPoints()[1]));
+				player3Points.setText(Integer.toString(baseController.getPoints()[2]));
+				player4Points.setText(Integer.toString(baseController.getPoints()[3]));
+				player5Points.setText(Integer.toString(baseController.getPoints()[4]));
+				player6Points.setText(Integer.toString(baseController.getPoints()[5]));
+				player7Points.setText(Integer.toString(baseController.getPoints()[6]));
+				player8Points.setText(Integer.toString(baseController.getPoints()[7]));
 				
+				for(Component temp : getComponents())
+				{
+					if(temp instanceof JTextField)
+					{
+						if(((JTextField) temp).getText() != "")
+						{
+							((JTextField) temp).setText("");
+						}
+					}
+				}
+				
+				//Phases
 				boolean [] passedPhase = new boolean [8];
+				
+				for(Component temp : getComponents())
+				{
+					if(temp instanceof JCheckBox)
+					{
+						if(((JCheckBox) temp).isSelected())
+						{
+							((JCheckBox) temp).setText("1");
+						}
+					}
+				}
+				
 				passedPhase[0] = player1Check.isSelected();
 				passedPhase[1] = player2Check.isSelected();
 				passedPhase[2] = player3Check.isSelected();
@@ -494,6 +525,8 @@ public class ScorePanel extends JPanel
 				passedPhase[5] = player6Check.isSelected();
 				passedPhase[6] = player7Check.isSelected();
 				passedPhase[7] = player8Check.isSelected();
+				
+//				baseController.givePhases(passedPhase);
 			}
 		});
 		
