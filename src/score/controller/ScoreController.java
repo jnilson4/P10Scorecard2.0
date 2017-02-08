@@ -63,6 +63,14 @@ public class ScoreController
 		}
 	}
 	
+	public void giveTotalPoints(int [] totalPoints)
+	{
+		for(int i = 0; i < totalPoints.length; i++)
+		{
+			update.getPlayer()[i].setPoints(update.getPlayer()[i].getPoints());
+		}
+	}
+	
 	public String [] getNames()
 	{
 		String [] names = new String [update.getPlayer().length];

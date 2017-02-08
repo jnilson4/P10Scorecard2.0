@@ -15,72 +15,23 @@ public class ScorePanel extends JPanel
 	private SpringLayout baseLayout;
 	private ScoreController baseController;
 	
-	private ImageIcon backgroundImage;
-	private JLabel imageText;
-	private JLabel roundNumber;
+	private ImageIcon backgroundImage, helpButton;
+	private JLabel imageText, imageText1, roundNumber;
 	private int round;
 	
-	private ImageIcon helpButton;
-	private JLabel imageText1;
+	private JButton setupButton, scoreRound, manualOverride;
 	
-	private JButton setupButton;
-	private JButton scoreRound;
-	private JButton manualOverride;
+	private JLabel player1, player2, player3, player4, player5, player6, player7, player8;
 	
-	private JLabel player1;
-	private JLabel player2;
-	private JLabel player3;
-	private JLabel player4;
-	private JLabel player5;
-	private JLabel player6;
-	private JLabel player7;
-	private JLabel player8;
+	private JLabel player1Points, player2Points, player3Points, player4Points, player5Points, player6Points, player7Points, player8Points;
 	
-	private JLabel player1Points;
-	private JLabel player2Points;
-	private JLabel player3Points;
-	private JLabel player4Points;
-	private JLabel player5Points;
-	private JLabel player6Points;
-	private JLabel player7Points;
-	private JLabel player8Points;
+	private JTextField player1Entry, player2Entry, player3Entry, player4Entry, player5Entry, player6Entry, player7Entry, player8Entry;
 	
-	private JTextField player1Entry;
-	private JTextField player2Entry;
-	private JTextField player3Entry;
-	private JTextField player4Entry;
-	private JTextField player5Entry;
-	private JTextField player6Entry;
-	private JTextField player7Entry;
-	private JTextField player8Entry;
+	private JCheckBox player1Check, player2Check, player3Check, player4Check, player5Check, player6Check, player7Check, player8Check;
 	
-	private JCheckBox player1Check;
-	private JCheckBox player2Check;
-	private JCheckBox player3Check;
-	private JCheckBox player4Check;
-	private JCheckBox player5Check;
-	private JCheckBox player6Check;
-	private JCheckBox player7Check;
-	private JCheckBox player8Check;
+	private JLabel player1Phase, player2Phase, player3Phase, player4Phase, player5Phase, player6Phase, player7Phase, player8Phase;
 	
-	private JLabel player1Phase;
-	private JLabel player2Phase;
-	private JLabel player3Phase;
-	private JLabel player4Phase;
-	private JLabel player5Phase;
-	private JLabel player6Phase;
-	private JLabel player7Phase;
-	private JLabel player8Phase;
-	
-	private JTextArea phaseC1;
-	private JTextArea pointsC1;
-	private JTextArea addPointsC1;
-	private JTextArea completePC1;
-	
-	private JTextArea phaseC2;
-	private JTextArea pointsC2;
-	private JTextArea addPointsC2;
-	private JTextArea completePC2;
+	private JTextArea phaseC1, phaseC2, pointsC1, pointsC2, addPointsC1, addPointsC2, completePC1, completePC2;
 	
 	public ScorePanel(ScoreController baseController)
 	{
@@ -574,6 +525,6 @@ public class ScorePanel extends JPanel
 		});
 	}
 	
-	//I like the idea of a score card, just get that trash code outta here
+	//I like the idea of a score card
 	//good code in general-easy to understand and clean
 }
