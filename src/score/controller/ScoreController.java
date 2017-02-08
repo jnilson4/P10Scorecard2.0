@@ -52,11 +52,14 @@ public class ScoreController
 		}
 	}
 	
-	public void givePhases(int [] phase)
+	public void givePhases(boolean [] phase)
 	{
 		for(int i = 0; i < phase.length; i++)
 		{
-			update.getPlayer()[i].setPhase(phase[i]);
+			if(phase[i])
+			{
+				update.getPlayer()[i].setPhase(update.getPlayer()[i].getPhase()+1);
+			}
 		}
 	}
 	
@@ -82,7 +85,7 @@ public class ScoreController
 		return points;
 	}
 	
-	public int [] getPhases()
+	public int [] getPhase()
 	{
 		int [] phases = new int [update.getPlayer().length];
 		for(int i = 0; i < phases.length; i++)

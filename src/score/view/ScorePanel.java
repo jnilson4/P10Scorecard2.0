@@ -147,14 +147,14 @@ public class ScorePanel extends JPanel
 		this.player7Check = new JCheckBox();
 		this.player8Check = new JCheckBox();
 
-		this.player1Phase = new JLabel("0");
-		this.player2Phase = new JLabel("0");
-		this.player3Phase = new JLabel("0");
-		this.player4Phase = new JLabel("0");
-		this.player5Phase = new JLabel("0");
-		this.player6Phase = new JLabel("0");
-		this.player7Phase = new JLabel("0");
-		this.player8Phase = new JLabel("0");
+		this.player1Phase = new JLabel("1");
+		this.player2Phase = new JLabel("1");
+		this.player3Phase = new JLabel("1");
+		this.player4Phase = new JLabel("1");
+		this.player5Phase = new JLabel("1");
+		this.player6Phase = new JLabel("1");
+		this.player7Phase = new JLabel("1");
+		this.player8Phase = new JLabel("1");
 		
 
 		setupPanel();
@@ -506,17 +506,6 @@ public class ScorePanel extends JPanel
 				//Phases
 				boolean [] passedPhase = new boolean [8];
 				
-				for(Component temp : getComponents())
-				{
-					if(temp instanceof JCheckBox)
-					{
-						if(((JCheckBox) temp).isSelected())
-						{
-							((JCheckBox) temp).setText("1");
-						}
-					}
-				}
-				
 				passedPhase[0] = player1Check.isSelected();
 				passedPhase[1] = player2Check.isSelected();
 				passedPhase[2] = player3Check.isSelected();
@@ -526,7 +515,25 @@ public class ScorePanel extends JPanel
 				passedPhase[6] = player7Check.isSelected();
 				passedPhase[7] = player8Check.isSelected();
 				
-//				baseController.givePhases(passedPhase);
+				baseController.givePhases(passedPhase);
+				
+				player1Phase.setText(Integer.toString(baseController.getPhase()[0]));
+				player2Phase.setText(Integer.toString(baseController.getPhase()[1]));
+				player3Phase.setText(Integer.toString(baseController.getPhase()[2]));
+				player4Phase.setText(Integer.toString(baseController.getPhase()[3]));
+				player5Phase.setText(Integer.toString(baseController.getPhase()[4]));
+				player6Phase.setText(Integer.toString(baseController.getPhase()[5]));
+				player7Phase.setText(Integer.toString(baseController.getPhase()[6]));
+				player8Phase.setText(Integer.toString(baseController.getPhase()[7]));
+				
+				player1Check.setSelected(false);
+				player2Check.setSelected(false);
+				player3Check.setSelected(false);
+				player4Check.setSelected(false);
+				player5Check.setSelected(false);
+				player6Check.setSelected(false);
+				player7Check.setSelected(false);
+				player8Check.setSelected(false);
 			}
 		});
 		
@@ -558,7 +565,11 @@ public class ScorePanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent clicked)
 			{
-				
+				ManualOverride mo = new ManualOverride(baseController);
+				baseController.getFrame().getContentPane().removeAll();
+				baseController.getFrame().setContentPane(mo);
+				baseController.getFrame().validate();
+				repaint();
 			}
 		});
 	}
