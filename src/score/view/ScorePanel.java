@@ -5,9 +5,13 @@ import score.controller.ScoreController;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
 import java.awt.event.*;
+import java.util.Vector;
+
 import score.model.*;
 
 public class ScorePanel extends JPanel
@@ -33,12 +37,15 @@ public class ScorePanel extends JPanel
 	
 	private JTextArea phaseC1, phaseC2, pointsC1, pointsC2, addPointsC1, addPointsC2, completePC1, completePC2;
 	
+	static MyTraversal newPolicy;
+	
 	public ScorePanel(ScoreController baseController)
 	{
 		super();
 		this.baseController = baseController;
-		String [] playerNames = baseController.getNames();
 		this.baseLayout = new SpringLayout();
+		
+		String [] playerNames = baseController.getNames();
 		
 		this.backgroundImage = new ImageIcon(getClass().getResource("/score/view/images/p10bg.jpg"));
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
@@ -71,6 +78,17 @@ public class ScorePanel extends JPanel
 		this.player7 = new JLabel(playerNames[6]);
 		this.player8 = new JLabel(playerNames[7]);
 		
+		
+		baseLayout.putConstraint(SpringLayout.NORTH, player2, 55, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5, 0, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player5, 425, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6, 0, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player6, 425, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7, 0, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player7, 425, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8, 0, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player8, 425, SpringLayout.WEST, this);
+		
 		this.player1Points = new JLabel("0");
 		this.player2Points = new JLabel("0");
 		this.player3Points = new JLabel("0");
@@ -79,6 +97,24 @@ public class ScorePanel extends JPanel
 		this.player6Points = new JLabel("0");
 		this.player7Points = new JLabel("0");
 		this.player8Points = new JLabel("0");
+		
+		
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Points, 0, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player1Points, 205, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Points, 0, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player2Points, 205, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Points, 0, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player3Points, 205, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Points, 0, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player4Points, 205, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Points, 0, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player5Points, 565, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Points, 0, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player6Points, 565, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Points, 0, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player7Points, 565, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Points, 0, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player8Points, 565, SpringLayout.WEST, this);
 		
 		this.player1Entry = new JTextField(4);
 		this.player2Entry = new JTextField(4);
@@ -89,6 +125,23 @@ public class ScorePanel extends JPanel
 		this.player7Entry = new JTextField(4);
 		this.player8Entry = new JTextField(4);
 		
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Entry, -5, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player1Entry, 165, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Entry, -5, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player2Entry, 165, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Entry, -5, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player3Entry, 165, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Entry, -5, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player4Entry, 165, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Entry, -5, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player5Entry, 525, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Entry, -5, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player6Entry, 525, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Entry, -5, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player7Entry, 525, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Entry, -5, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player8Entry, 525, SpringLayout.WEST, this);
+		
 		this.player1Check = new JCheckBox();
 		this.player2Check = new JCheckBox();
 		this.player3Check = new JCheckBox();
@@ -97,16 +150,59 @@ public class ScorePanel extends JPanel
 		this.player6Check = new JCheckBox();
 		this.player7Check = new JCheckBox();
 		this.player8Check = new JCheckBox();
-
-		this.player1Phase = new JLabel("1");
-		this.player2Phase = new JLabel("1");
-		this.player3Phase = new JLabel("1");
-		this.player4Phase = new JLabel("1");
-		this.player5Phase = new JLabel("1");
-		this.player6Phase = new JLabel("1");
-		this.player7Phase = new JLabel("1");
-		this.player8Phase = new JLabel("1");
 		
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Check, -5, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player1Check, 265, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Check, -5, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player2Check, 265, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Check, -5, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player3Check, 265, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Check, -5, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player4Check, 265, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Check, -5, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player5Check, 625, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Check, -5, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player6Check, 625, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Check, -5, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player7Check, 625, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Check, -5, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player8Check, 625, SpringLayout.WEST, this);
+		
+		this.player1Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Phase, 0, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player1Phase, 305, SpringLayout.WEST, this);
+		this.player2Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Phase, 0, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player2Phase, 305, SpringLayout.WEST, this);
+		this.player3Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Phase, 0, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player3Phase, 305, SpringLayout.WEST, this);
+		this.player4Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Phase, 0, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player4Phase, 305, SpringLayout.WEST, this);
+		this.player5Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Phase, 0, SpringLayout.NORTH, player1);
+		baseLayout.putConstraint(SpringLayout.EAST, player5Phase, 665, SpringLayout.WEST, this);
+		this.player6Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Phase, 0, SpringLayout.NORTH, player2);
+		baseLayout.putConstraint(SpringLayout.EAST, player6Phase, 665, SpringLayout.WEST, this);
+		this.player7Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Phase, 0, SpringLayout.NORTH, player3);
+		baseLayout.putConstraint(SpringLayout.EAST, player7Phase, 665, SpringLayout.WEST, this);
+		this.player8Phase = new JLabel("1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Phase, 0, SpringLayout.NORTH, player4);
+		baseLayout.putConstraint(SpringLayout.EAST, player8Phase, 665, SpringLayout.WEST, this);
+		
+		Vector<Component> stuff = new Vector<Component>();
+		stuff.add(player1Entry);
+		stuff.add(player2Entry);
+		stuff.add(player3Entry);
+		stuff.add(player4Entry);
+		stuff.add(player5Entry);
+		stuff.add(player6Entry);
+		stuff.add(player7Entry);
+		stuff.add(player8Entry);
+		newPolicy = new MyTraversal(stuff);
 
 		setupPanel();
 		setupGUI();
@@ -116,7 +212,6 @@ public class ScorePanel extends JPanel
 	
 	private void setupPanel()
 	{
-		
 		this.setLayout(baseLayout);
 		this.setPreferredSize(new Dimension(700,400));
 		this.setBackground(Color.RED);
@@ -128,15 +223,15 @@ public class ScorePanel extends JPanel
 		this.add(roundNumber);
 		this.add(imageText1);
 		
-		this.add(phaseC1);
-		this.add(pointsC1);
-		this.add(addPointsC1);
-		this.add(completePC1);
-		
-		this.add(phaseC2);
-		this.add(pointsC2);
-		this.add(addPointsC2);
-		this.add(completePC2);
+//		this.add(phaseC1);
+//		this.add(pointsC1);
+//		this.add(addPointsC1);
+//		this.add(completePC1);
+//		
+//		this.add(phaseC2);
+//		this.add(pointsC2);
+//		this.add(addPointsC2);
+//		this.add(completePC2);
 		
 		this.add(player1);
 		this.add(player2);
@@ -183,7 +278,7 @@ public class ScorePanel extends JPanel
 		this.add(player7Phase);
 		this.add(player8Phase);
 		
-		this.add(imageText);
+//		this.add(imageText);
 	}
 	
 	private void setupLayout()
@@ -198,112 +293,86 @@ public class ScorePanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, player7Phase, 0, SpringLayout.NORTH, player7Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Phase, 31, SpringLayout.EAST, player7Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Phase, 0, SpringLayout.NORTH, player8Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player8Phase, 31, SpringLayout.EAST, player8Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player6Phase, 0, SpringLayout.NORTH, player6Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player6Phase, 31, SpringLayout.EAST, player6Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Phase, 0, SpringLayout.NORTH, player5Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player5Phase, 31, SpringLayout.EAST, player5Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Phase, 304, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Phase, 0, SpringLayout.WEST, player1Phase);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player3Phase, -42, SpringLayout.NORTH, player4Phase);
-		baseLayout.putConstraint(SpringLayout.WEST, player3Phase, 0, SpringLayout.WEST, player1Phase);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player2Phase, -42, SpringLayout.NORTH, player3Phase);
-		baseLayout.putConstraint(SpringLayout.WEST, player2Phase, 0, SpringLayout.WEST, player1Phase);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player1Phase, -42, SpringLayout.NORTH, player2Phase);
-		baseLayout.putConstraint(SpringLayout.EAST, player1Phase, -397, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, player1Check, -31, SpringLayout.WEST, player1Phase);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Check, 299, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, player8Check, 0, SpringLayout.WEST, player5Check);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player7Check, -35, SpringLayout.NORTH, player8Check);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player1Check, -35, SpringLayout.NORTH, player2Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Check, 299, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, player5Check, 31, SpringLayout.EAST, player5Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player6Check, 0, SpringLayout.WEST, player5Check);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player5Check, -35, SpringLayout.NORTH, player6Check);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Check, 0, SpringLayout.WEST, player5Check);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player6Check, -35, SpringLayout.NORTH, player7Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Entry, 299, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Entry, 299, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, player5, -31, SpringLayout.WEST, player5Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player5Entry, 465, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player3Points, -42, SpringLayout.NORTH, player4Points);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player5Points, -42, SpringLayout.NORTH, player6Points);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player6Points, -42, SpringLayout.NORTH, player7Points);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player7Points, -42, SpringLayout.NORTH, player8Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Points, 304, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, addPointsC1, 123, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, phaseC1, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.SOUTH, pointsC1, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.SOUTH, completePC1, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.WEST, phaseC1, 6, SpringLayout.EAST, completePC1);
-		baseLayout.putConstraint(SpringLayout.EAST, phaseC1, 57, SpringLayout.EAST, completePC1);
-		baseLayout.putConstraint(SpringLayout.WEST, completePC1, 232, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, completePC1, -417, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, -59, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, phaseC2, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 0, SpringLayout.EAST, scoreRound);
-		baseLayout.putConstraint(SpringLayout.SOUTH, pointsC2, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, -58, SpringLayout.WEST, phaseC2);
-		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 140, SpringLayout.EAST, phaseC1);
-		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, -24, SpringLayout.WEST, pointsC2);
-		baseLayout.putConstraint(SpringLayout.SOUTH, addPointsC2, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.WEST, completePC2, 6, SpringLayout.EAST, pointsC2);
-		baseLayout.putConstraint(SpringLayout.SOUTH, completePC2, 0, SpringLayout.SOUTH, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.EAST, completePC2, 57, SpringLayout.EAST, pointsC2);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player7Phase, 0, SpringLayout.NORTH, player7Points);
+//		baseLayout.putConstraint(SpringLayout.WEST, player7Phase, 31, SpringLayout.EAST, player7Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player8Phase, 0, SpringLayout.NORTH, player8Points);
+//		baseLayout.putConstraint(SpringLayout.WEST, player8Phase, 31, SpringLayout.EAST, player8Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player6Phase, 0, SpringLayout.NORTH, player6Points);
+//		baseLayout.putConstraint(SpringLayout.WEST, player6Phase, 31, SpringLayout.EAST, player6Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player4Phase, 304, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, player4Phase, 0, SpringLayout.WEST, player1Phase);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player3Phase, -42, SpringLayout.NORTH, player4Phase);
+//		baseLayout.putConstraint(SpringLayout.WEST, player3Phase, 0, SpringLayout.WEST, player1Phase);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player2Phase, -42, SpringLayout.NORTH, player3Phase);
+//		baseLayout.putConstraint(SpringLayout.WEST, player2Phase, 0, SpringLayout.WEST, player1Phase);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player8Check, 299, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, player8Check, 0, SpringLayout.WEST, player5Check);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player7Check, -35, SpringLayout.NORTH, player8Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player4Check, 299, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, player6Check, 0, SpringLayout.WEST, player5Check);
+//		baseLayout.putConstraint(SpringLayout.WEST, player7Check, 0, SpringLayout.WEST, player5Check);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player6Check, -35, SpringLayout.NORTH, player7Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player8Entry, 299, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player4Entry, 299, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player3Points, -42, SpringLayout.NORTH, player4Points);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player6Points, -42, SpringLayout.NORTH, player7Points);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player7Points, -42, SpringLayout.NORTH, player8Points);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player8Points, 304, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, addPointsC1, 123, SpringLayout.WEST, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, phaseC1, 6, SpringLayout.EAST, completePC1);
+//		baseLayout.putConstraint(SpringLayout.EAST, phaseC1, 57, SpringLayout.EAST, completePC1);
+//		baseLayout.putConstraint(SpringLayout.WEST, completePC1, 232, SpringLayout.WEST, this);
+//		baseLayout.putConstraint(SpringLayout.EAST, completePC1, -417, SpringLayout.EAST, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, -59, SpringLayout.EAST, this);
+//		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 0, SpringLayout.EAST, scoreRound);
+//		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, -58, SpringLayout.WEST, phaseC2);
+//		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 140, SpringLayout.EAST, phaseC1);
+//		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, -24, SpringLayout.WEST, pointsC2);
+//		baseLayout.putConstraint(SpringLayout.WEST, completePC2, 6, SpringLayout.EAST, pointsC2);
+//		baseLayout.putConstraint(SpringLayout.EAST, completePC2, 57, SpringLayout.EAST, pointsC2);
+//		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, -7, SpringLayout.WEST, player5Points);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player3Entry, -32, SpringLayout.NORTH, player4Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player6Points, 31, SpringLayout.EAST, player6Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player6Entry, 465, SpringLayout.WEST, this);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player6Entry, -32, SpringLayout.NORTH, player7Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player7Points, 31, SpringLayout.EAST, player7Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player7Entry, 465, SpringLayout.WEST, this);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player7Entry, -32, SpringLayout.NORTH, player8Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player8Points, 31, SpringLayout.EAST, player8Entry);
+//		baseLayout.putConstraint(SpringLayout.WEST, player8Entry, 465, SpringLayout.WEST, this);
+//		baseLayout.putConstraint(SpringLayout.EAST, player7Points, -31, SpringLayout.WEST, player7Check);
+//		baseLayout.putConstraint(SpringLayout.EAST, player2Check, -31, SpringLayout.WEST, player2Phase);
+//		baseLayout.putConstraint(SpringLayout.EAST, player3Check, -31, SpringLayout.WEST, player3Phase);
+//		baseLayout.putConstraint(SpringLayout.EAST, player3Check, -31, SpringLayout.WEST, player3Phase);
+//		baseLayout.putConstraint(SpringLayout.EAST, addPointsC1, -534, SpringLayout.EAST, this);
+//		
+//		baseLayout.putConstraint(SpringLayout.WEST, player2Points, 0, SpringLayout.WEST, player1Points);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player2Points, -42, SpringLayout.NORTH, player3Points);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player4Points, 42, SpringLayout.SOUTH, player3);
+//		baseLayout.putConstraint(SpringLayout.WEST, player4Points, 0, SpringLayout.WEST, player3Points);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, addPointsC1, -14, SpringLayout.NORTH, player1Entry);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player2Entry, -5, SpringLayout.NORTH, player2);
+//		baseLayout.putConstraint(SpringLayout.WEST, player2Entry, 0, SpringLayout.WEST, player1Entry);
+//		baseLayout.putConstraint(SpringLayout.EAST, player3Entry, -31, SpringLayout.WEST, player3Points);
+//		baseLayout.putConstraint(SpringLayout.WEST, player4Entry, 0, SpringLayout.WEST, player3Entry);
+//		baseLayout.putConstraint(SpringLayout.SOUTH, player2Check, -35, SpringLayout.NORTH, player3Check);
+//		baseLayout.putConstraint(SpringLayout.EAST, player3Points, -31, SpringLayout.WEST, player3Check);
+//		baseLayout.putConstraint(SpringLayout.NORTH, player3Check, 241, SpringLayout.NORTH, this);
+//		baseLayout.putConstraint(SpringLayout.WEST, player4Check, 0, SpringLayout.WEST, player3Check);
+		
+		baseLayout.putConstraint(SpringLayout.EAST, player1, -40, SpringLayout.WEST, player1Entry);
+		baseLayout.putConstraint(SpringLayout.NORTH, player1, 130, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player2, 0, SpringLayout.EAST, player1);
+		baseLayout.putConstraint(SpringLayout.SOUTH, player3, -42, SpringLayout.NORTH, player4);
 		baseLayout.putConstraint(SpringLayout.EAST, player3, 0, SpringLayout.EAST, player1);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4, 304, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player4, 0, SpringLayout.EAST, player1);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6, 5, SpringLayout.NORTH, player6Entry);
 		baseLayout.putConstraint(SpringLayout.EAST, player6, 0, SpringLayout.EAST, player5);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7, 5, SpringLayout.NORTH, player7Entry);
 		baseLayout.putConstraint(SpringLayout.EAST, player7, 0, SpringLayout.EAST, player5);
 		baseLayout.putConstraint(SpringLayout.EAST, player8, 0, SpringLayout.EAST, player5);
-		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, -7, SpringLayout.WEST, player5Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Entry, 125, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player3Entry, -32, SpringLayout.NORTH, player4Entry);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Entry, 14, SpringLayout.SOUTH, addPointsC2);
-		baseLayout.putConstraint(SpringLayout.WEST, player5Points, 31, SpringLayout.EAST, player5Entry);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5, 5, SpringLayout.NORTH, player5Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player6Points, 31, SpringLayout.EAST, player6Entry);
-		baseLayout.putConstraint(SpringLayout.NORTH, player6, 5, SpringLayout.NORTH, player6Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player6Entry, 465, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player6Entry, -32, SpringLayout.NORTH, player7Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Points, 31, SpringLayout.EAST, player7Entry);
-		baseLayout.putConstraint(SpringLayout.NORTH, player7, 5, SpringLayout.NORTH, player7Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Entry, 465, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player7Entry, -32, SpringLayout.NORTH, player8Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player8Points, 31, SpringLayout.EAST, player8Entry);
 		baseLayout.putConstraint(SpringLayout.NORTH, player8, 5, SpringLayout.NORTH, player8Entry);
-		baseLayout.putConstraint(SpringLayout.WEST, player8Entry, 465, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, player1Points, -31, SpringLayout.WEST, player1Check);
-		baseLayout.putConstraint(SpringLayout.EAST, player7Points, -31, SpringLayout.WEST, player7Check);
-		baseLayout.putConstraint(SpringLayout.EAST, player2Check, -31, SpringLayout.WEST, player2Phase);
-		baseLayout.putConstraint(SpringLayout.EAST, player3Check, -31, SpringLayout.WEST, player3Phase);
-		baseLayout.putConstraint(SpringLayout.EAST, player3Check, -31, SpringLayout.WEST, player3Phase);
-		baseLayout.putConstraint(SpringLayout.EAST, pointsC1, -6, SpringLayout.WEST, completePC1);
-		baseLayout.putConstraint(SpringLayout.EAST, addPointsC1, -534, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, pointsC1, 26, SpringLayout.EAST, addPointsC1);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1, 130, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player3, -42, SpringLayout.NORTH, player4);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4, 304, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, player2, 0, SpringLayout.NORTH, player6);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Points, 19, SpringLayout.SOUTH, pointsC1);
-		baseLayout.putConstraint(SpringLayout.WEST, player2Points, 0, SpringLayout.WEST, player1Points);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player2Points, -42, SpringLayout.NORTH, player3Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Points, 42, SpringLayout.SOUTH, player3);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Points, 0, SpringLayout.WEST, player3Points);
-		baseLayout.putConstraint(SpringLayout.EAST, player1, -40, SpringLayout.WEST, player1Entry);
-		baseLayout.putConstraint(SpringLayout.SOUTH, addPointsC1, -14, SpringLayout.NORTH, player1Entry);
-		baseLayout.putConstraint(SpringLayout.EAST, player1Entry, -31, SpringLayout.WEST, player1Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, player2Entry, -5, SpringLayout.NORTH, player2);
-		baseLayout.putConstraint(SpringLayout.WEST, player2Entry, 0, SpringLayout.WEST, player1Entry);
-		baseLayout.putConstraint(SpringLayout.EAST, player3Entry, -31, SpringLayout.WEST, player3Points);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Entry, 0, SpringLayout.WEST, player3Entry);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player2Check, -35, SpringLayout.NORTH, player3Check);
-		baseLayout.putConstraint(SpringLayout.EAST, player3Points, -31, SpringLayout.WEST, player3Check);
-		baseLayout.putConstraint(SpringLayout.NORTH, player3Check, 241, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Check, 0, SpringLayout.WEST, player3Check);
 		
 	}
 	
@@ -525,6 +594,59 @@ public class ScorePanel extends JPanel
 		});
 	}
 	
-	//I like the idea of a score card
-	//good code in general-easy to understand and clean
+	public static class MyTraversal extends FocusTraversalPolicy
+	{
+		Vector<Component> stuff;
+		
+		public MyTraversal(Vector<Component> stuff)
+		{
+			this.stuff = new Vector<Component>(stuff.size());
+			this.stuff.addAll(stuff);
+		}
+		
+		public Component getComponentAfter(Container focusCycleRoot, Component aComponent)
+		{
+			int idx = (stuff.indexOf(aComponent) + 1) % stuff.size();
+			return stuff.get(idx);
+		}
+		
+		public Component getComponentBefore(Container focusCycleRoot, Component aComponent)
+		{
+			int idx = stuff.indexOf(aComponent) - 1;
+			if(idx < 0)
+			{
+				idx = stuff.size() -1;
+			}
+			
+			return stuff.get(idx);
+		}
+		
+		public Component getDefaultComponent(Container focusCycleRoot)
+		{
+			return stuff.get(0);
+		}
+		
+		public Component getLastComponent(Container focusCycleRoot)
+		{
+			return stuff.lastElement();
+		}
+		
+		public Component getFirstComponent(Container focusCycleRoot)
+		{
+			return stuff.get(0);
+		}
+		
+		
+	}
+	
+	private void clearBlank()
+	{
+		if(player8.getText().equals(""))
+		{
+			this.remove(player8Points);
+			this.remove(player8Phase);
+			this.remove(player8Entry);
+			this.remove(player8Check);
+		}
+	}
 }

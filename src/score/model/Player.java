@@ -6,6 +6,11 @@ public class Player
 	private int points;
 	private int phase;
 	
+	public Player()
+	{
+		this.phase = 1;
+	}
+	
 	public String getName()
 	{
 		return name;
