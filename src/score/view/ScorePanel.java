@@ -12,8 +12,6 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.util.Vector;
 
-import score.model.*;
-
 public class ScorePanel extends JPanel
 {
 	private SpringLayout baseLayout;
@@ -59,15 +57,15 @@ public class ScorePanel extends JPanel
 		this.scoreRound = new JButton("Score Round");
 		this.manualOverride = new JButton("Manual Override");
 		
-		this.phaseC1 = new JTextArea("Current         Phase");
-		this.pointsC1 = new JTextArea("Total Points");
+		this.phaseC1 = new JTextArea("Phase");
+		this.pointsC1 = new JTextArea("Points");
 		this.addPointsC1 = new JTextArea("Round Points");
-		this.completePC1 = new JTextArea("  Phase Complete?");
+		this.completePC1 = new JTextArea("   Phase Complete?");
 		
-		this.phaseC2 = new JTextArea("Current        Phase");
-		this.pointsC2 = new JTextArea("Total Points");
+		this.phaseC2 = new JTextArea("Phase");
+		this.pointsC2 = new JTextArea("Points");
 		this.addPointsC2 = new JTextArea("Round Points");
-		this.completePC2 = new JTextArea("  Phase Complete?");
+		this.completePC2 = new JTextArea("   Phase Complete?");
 		
 		this.player1 = new JLabel(playerNames[0]);
 		this.player2 = new JLabel(playerNames[1]);
@@ -129,6 +127,7 @@ public class ScorePanel extends JPanel
 		setupGUI();
 		setupLayout1_4();
 		setupLayout5_8();
+		setupLayoutLabels();
 		setupListeners();
 	}
 	
@@ -145,15 +144,15 @@ public class ScorePanel extends JPanel
 		this.add(roundNumber);
 		this.add(imageText1);
 		
-//		this.add(phaseC1);
-//		this.add(pointsC1);
-//		this.add(addPointsC1);
-//		this.add(completePC1);
-//		
-//		this.add(phaseC2);
-//		this.add(pointsC2);
-//		this.add(addPointsC2);
-//		this.add(completePC2);
+		this.add(phaseC1);
+		this.add(pointsC1);
+		this.add(addPointsC1);
+		this.add(completePC1);
+		
+		this.add(phaseC2);
+		this.add(pointsC2);
+		this.add(addPointsC2);
+		this.add(completePC2);
 		
 		this.add(player1);
 		this.add(player2);
@@ -205,18 +204,6 @@ public class ScorePanel extends JPanel
 	
 	private void setupLayout1_4()
 	{
-		baseLayout.putConstraint(SpringLayout.NORTH, roundNumber, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, roundNumber, 12, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, manualOverride, 126, SpringLayout.EAST, setupButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, manualOverride, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, scoreRound, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
-		
-		//Names
 		baseLayout.putConstraint(SpringLayout.EAST, player1, -40, SpringLayout.WEST, player1Entry);
 		baseLayout.putConstraint(SpringLayout.NORTH, player1, 130, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player2, 0, SpringLayout.EAST, player1);
@@ -328,6 +315,44 @@ public class ScorePanel extends JPanel
 		
 	}
 	
+	private void setupLayoutLabels()
+	{
+		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, 650, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 678, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, 550, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, 578, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 470, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, completePC2, -110, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, completePC2, -65, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, phaseC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, completePC1, -35, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, pointsC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, completePC2, -35, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, pointsC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, phaseC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.EAST, addPointsC1, 0, SpringLayout.EAST, player1Entry);
+		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, 0, SpringLayout.EAST, player5Entry);
+		baseLayout.putConstraint(SpringLayout.WEST, phaseC1, 290, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, phaseC1, 318, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, pointsC1, 190, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, pointsC1, 214, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addPointsC1, 110, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, completePC1, 230, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, completePC1, -30, SpringLayout.EAST, player1Phase);
+		baseLayout.putConstraint(SpringLayout.NORTH, roundNumber, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, roundNumber, 12, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, manualOverride, 126, SpringLayout.EAST, setupButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, manualOverride, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, scoreRound, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
+	}
+	
 	private void setupGUI()
 	{
 		roundNumber.setForeground(Color.WHITE);
@@ -367,12 +392,12 @@ public class ScorePanel extends JPanel
 		phaseC1.setLineWrap(true);
 		phaseC1.setWrapStyleWord(true);
 		phaseC1.setColumns(1);
-		phaseC1.setRows(2);
+		phaseC1.setRows(1);
 		phaseC1.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 		phaseC1.setForeground(Color.WHITE);
 		pointsC1.setEditable(false);
 		pointsC1.setColumns(1);
-		pointsC1.setRows(2);
+		pointsC1.setRows(1);
 		pointsC1.setWrapStyleWord(true);
 		pointsC1.setLineWrap(true);
 		pointsC1.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
@@ -381,7 +406,7 @@ public class ScorePanel extends JPanel
 		addPointsC1.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 		addPointsC1.setForeground(Color.WHITE);
 		addPointsC1.setWrapStyleWord(true);
-		addPointsC1.setRows(2);
+		addPointsC1.setRows(1);
 		addPointsC1.setColumns(1);
 		addPointsC1.setLineWrap(true);
 		completePC1.setEditable(false);
@@ -395,12 +420,12 @@ public class ScorePanel extends JPanel
 		phaseC2.setLineWrap(true);
 		phaseC2.setWrapStyleWord(true);
 		phaseC2.setColumns(1);
-		phaseC2.setRows(2);
+		phaseC2.setRows(1);
 		phaseC2.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 		phaseC2.setForeground(Color.WHITE);
 		pointsC2.setEditable(false);
 		pointsC2.setColumns(1);
-		pointsC2.setRows(2);
+		pointsC2.setRows(1);
 		pointsC2.setWrapStyleWord(true);
 		pointsC2.setLineWrap(true);
 		pointsC2.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
@@ -409,7 +434,7 @@ public class ScorePanel extends JPanel
 		addPointsC2.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 		addPointsC2.setForeground(Color.WHITE);
 		addPointsC2.setWrapStyleWord(true);
-		addPointsC2.setRows(2);
+		addPointsC2.setRows(1);
 		addPointsC2.setColumns(1);
 		addPointsC2.setLineWrap(true);
 		completePC2.setEditable(false);
