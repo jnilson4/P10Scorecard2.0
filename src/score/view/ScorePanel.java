@@ -12,8 +12,6 @@ import java.awt.Font;
 import java.awt.event.*;
 import java.util.Vector;
 
-import score.model.*;
-
 public class ScorePanel extends JPanel
 {
 	private SpringLayout baseLayout;
@@ -60,32 +58,14 @@ public class ScorePanel extends JPanel
 		this.manualOverride = new JButton("Manual Override");
 		
 		this.phaseC1 = new JTextArea("Phase");
-		baseLayout.putConstraint(SpringLayout.WEST, phaseC1, 290, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, phaseC1, 318, SpringLayout.WEST, this);
-		phaseC1.setMinimumSize(new Dimension(22, 10));
-		phaseC1.setMaximumSize(new Dimension(20, 10));
-		phaseC1.setPreferredSize(new Dimension(18, 10));
-		phaseC1.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		this.pointsC1 = new JTextArea("Points");
-		baseLayout.putConstraint(SpringLayout.WEST, pointsC1, 190, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, pointsC1, 214, SpringLayout.WEST, this);
 		this.addPointsC1 = new JTextArea("Round Points");
-		baseLayout.putConstraint(SpringLayout.WEST, addPointsC1, 110, SpringLayout.WEST, this);
 		this.completePC1 = new JTextArea("   Phase Complete?");
-		completePC1.setRequestFocusEnabled(false);
-		baseLayout.putConstraint(SpringLayout.WEST, completePC1, 230, SpringLayout.WEST, this);
 		
 		this.phaseC2 = new JTextArea("Phase");
-		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, 650, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 678, SpringLayout.WEST, this);
 		this.pointsC2 = new JTextArea("Points");
-		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, 550, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, 578, SpringLayout.WEST, this);
 		this.addPointsC2 = new JTextArea("Round Points");
-		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 470, SpringLayout.WEST, this);
 		this.completePC2 = new JTextArea("   Phase Complete?");
-		baseLayout.putConstraint(SpringLayout.WEST, completePC2, -110, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, completePC2, -65, SpringLayout.EAST, this);
 		
 		this.player1 = new JLabel(playerNames[0]);
 		this.player2 = new JLabel(playerNames[1]);
@@ -97,30 +77,19 @@ public class ScorePanel extends JPanel
 		this.player8 = new JLabel(playerNames[7]);
 
 		this.player1Points = new JLabel("0");
-		baseLayout.putConstraint(SpringLayout.NORTH, phaseC1, -30, SpringLayout.NORTH, player1Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, completePC1, -35, SpringLayout.NORTH, player1Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC1, -30, SpringLayout.NORTH, player1Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, pointsC1, -30, SpringLayout.NORTH, player1Points);
 		this.player2Points = new JLabel("0");
 		this.player3Points = new JLabel("0");
 		this.player4Points = new JLabel("0");
 		this.player5Points = new JLabel("0");
-		baseLayout.putConstraint(SpringLayout.NORTH, completePC2, -35, SpringLayout.NORTH, player5Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC2, -30, SpringLayout.NORTH, player5Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, pointsC2, -30, SpringLayout.NORTH, player5Points);
-		baseLayout.putConstraint(SpringLayout.NORTH, phaseC2, -30, SpringLayout.NORTH, player5Points);
 		this.player6Points = new JLabel("0");
 		this.player7Points = new JLabel("0");
 		this.player8Points = new JLabel("0");
 
 		this.player1Entry = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.EAST, addPointsC1, 0, SpringLayout.EAST, player1Entry);
-		baseLayout.putConstraint(SpringLayout.EAST, player1, -40, SpringLayout.WEST, player1Entry);
 		this.player2Entry = new JTextField(4);
 		this.player3Entry = new JTextField(4);
 		this.player4Entry = new JTextField(4);
 		this.player5Entry = new JTextField(4);
-		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, 0, SpringLayout.EAST, player5Entry);
 		this.player6Entry = new JTextField(4);
 		this.player7Entry = new JTextField(4);
 		this.player8Entry = new JTextField(4);
@@ -135,7 +104,6 @@ public class ScorePanel extends JPanel
 		this.player8Check = new JCheckBox();
 		
 		this.player1Phase = new JLabel("1");
-		baseLayout.putConstraint(SpringLayout.EAST, completePC1, -30, SpringLayout.EAST, player1Phase);
 		this.player2Phase = new JLabel("1");
 		this.player3Phase = new JLabel("1");
 		this.player4Phase = new JLabel("1");
@@ -159,6 +127,7 @@ public class ScorePanel extends JPanel
 		setupGUI();
 		setupLayout1_4();
 		setupLayout5_8();
+		setupLayoutLabels();
 		setupListeners();
 	}
 	
@@ -230,21 +199,12 @@ public class ScorePanel extends JPanel
 		this.add(player7Phase);
 		this.add(player8Phase);
 		
-//		this.add(imageText);
+		this.add(imageText);
 	}
 	
 	private void setupLayout1_4()
 	{
-		baseLayout.putConstraint(SpringLayout.NORTH, roundNumber, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, roundNumber, 12, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, manualOverride, 126, SpringLayout.EAST, setupButton);
-		baseLayout.putConstraint(SpringLayout.SOUTH, manualOverride, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, scoreRound, -10, SpringLayout.SOUTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, player1, -40, SpringLayout.WEST, player1Entry);
 		baseLayout.putConstraint(SpringLayout.NORTH, player1, 130, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player2, 0, SpringLayout.EAST, player1);
 		baseLayout.putConstraint(SpringLayout.NORTH, player2, 55, SpringLayout.NORTH, player1);
@@ -353,6 +313,44 @@ public class ScorePanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, player8Phase, 665, SpringLayout.WEST, this);
 		
 		
+	}
+	
+	private void setupLayoutLabels()
+	{
+		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, 650, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 678, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, 550, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, 578, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 470, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, completePC2, -110, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, completePC2, -65, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, phaseC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, completePC1, -35, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, pointsC1, -30, SpringLayout.NORTH, player1Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, completePC2, -35, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, pointsC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, phaseC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.EAST, addPointsC1, 0, SpringLayout.EAST, player1Entry);
+		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, 0, SpringLayout.EAST, player5Entry);
+		baseLayout.putConstraint(SpringLayout.WEST, phaseC1, 290, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, phaseC1, 318, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, pointsC1, 190, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, pointsC1, 214, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, addPointsC1, 110, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, completePC1, 230, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, completePC1, -30, SpringLayout.EAST, player1Phase);
+		baseLayout.putConstraint(SpringLayout.NORTH, roundNumber, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, roundNumber, 12, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, imageText1, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, imageText1, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, manualOverride, 126, SpringLayout.EAST, setupButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, manualOverride, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, scoreRound, -10, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.EAST, scoreRound, -10, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.WEST, setupButton, 10, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, setupButton, -10, SpringLayout.SOUTH, this);
 	}
 	
 	private void setupGUI()
