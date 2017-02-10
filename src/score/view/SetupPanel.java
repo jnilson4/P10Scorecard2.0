@@ -51,7 +51,7 @@ public class SetupPanel extends JPanel
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
 		
 		this.player1Label = new JLabel("Player 1");
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Label, 150, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Label, 140, SpringLayout.NORTH, this);
 		this.player2Label = new JLabel("Player 2");
 		baseLayout.putConstraint(SpringLayout.NORTH, player2Label, 55, SpringLayout.NORTH, player1Label);
 		this.player3Label = new JLabel("Player 3");
@@ -77,6 +77,7 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, player3Box, -5, SpringLayout.NORTH, player3Label);
 		this.player4Box = new JTextField(4);
 		baseLayout.putConstraint(SpringLayout.NORTH, player4Box, -5, SpringLayout.NORTH, player4Label);
+		baseLayout.putConstraint(SpringLayout.WEST, player4Box, 203, SpringLayout.WEST, this);
 		this.player5Box = new JTextField(4);
 		baseLayout.putConstraint(SpringLayout.NORTH, player5Box, -5, SpringLayout.NORTH, player1Label);
 		this.player6Box = new JTextField(4);
@@ -152,7 +153,6 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, player1Box, 203, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player2Box, 203, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player3Box, 203, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.WEST, player4Box, 104, SpringLayout.EAST, player4Label);
 		baseLayout.putConstraint(SpringLayout.WEST, player5Box, 99, SpringLayout.EAST, player5Label);
 		baseLayout.putConstraint(SpringLayout.EAST, player5Box, -56, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player6Box, 586, SpringLayout.WEST, this);
