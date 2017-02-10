@@ -79,8 +79,13 @@ public class ScorePanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, phaseC2, 650, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, phaseC2, 678, SpringLayout.WEST, this);
 		this.pointsC2 = new JTextArea("Points");
+		baseLayout.putConstraint(SpringLayout.WEST, pointsC2, 550, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, pointsC2, 578, SpringLayout.WEST, this);
 		this.addPointsC2 = new JTextArea("Round Points");
-		this.completePC2 = new JTextArea("  Phase Complete?");
+		baseLayout.putConstraint(SpringLayout.WEST, addPointsC2, 470, SpringLayout.WEST, this);
+		this.completePC2 = new JTextArea("   Phase Complete?");
+		baseLayout.putConstraint(SpringLayout.WEST, completePC2, -110, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, completePC2, -65, SpringLayout.EAST, this);
 		
 		this.player1 = new JLabel(playerNames[0]);
 		this.player2 = new JLabel(playerNames[1]);
@@ -100,6 +105,9 @@ public class ScorePanel extends JPanel
 		this.player3Points = new JLabel("0");
 		this.player4Points = new JLabel("0");
 		this.player5Points = new JLabel("0");
+		baseLayout.putConstraint(SpringLayout.NORTH, completePC2, -35, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, addPointsC2, -30, SpringLayout.NORTH, player5Points);
+		baseLayout.putConstraint(SpringLayout.NORTH, pointsC2, -30, SpringLayout.NORTH, player5Points);
 		baseLayout.putConstraint(SpringLayout.NORTH, phaseC2, -30, SpringLayout.NORTH, player5Points);
 		this.player6Points = new JLabel("0");
 		this.player7Points = new JLabel("0");
@@ -112,6 +120,7 @@ public class ScorePanel extends JPanel
 		this.player3Entry = new JTextField(4);
 		this.player4Entry = new JTextField(4);
 		this.player5Entry = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.EAST, addPointsC2, 0, SpringLayout.EAST, player5Entry);
 		this.player6Entry = new JTextField(4);
 		this.player7Entry = new JTextField(4);
 		this.player8Entry = new JTextField(4);
@@ -418,7 +427,7 @@ public class ScorePanel extends JPanel
 		phaseC2.setForeground(Color.WHITE);
 		pointsC2.setEditable(false);
 		pointsC2.setColumns(1);
-		pointsC2.setRows(2);
+		pointsC2.setRows(1);
 		pointsC2.setWrapStyleWord(true);
 		pointsC2.setLineWrap(true);
 		pointsC2.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
@@ -427,7 +436,7 @@ public class ScorePanel extends JPanel
 		addPointsC2.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
 		addPointsC2.setForeground(Color.WHITE);
 		addPointsC2.setWrapStyleWord(true);
-		addPointsC2.setRows(2);
+		addPointsC2.setRows(1);
 		addPointsC2.setColumns(1);
 		addPointsC2.setLineWrap(true);
 		completePC2.setEditable(false);
