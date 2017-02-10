@@ -51,22 +51,40 @@ public class SetupPanel extends JPanel
 		this.imageText = new JLabel(" ", backgroundImage, JLabel.CENTER);
 		
 		this.player1Label = new JLabel("Player 1");
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Label, 150, SpringLayout.NORTH, this);
 		this.player2Label = new JLabel("Player 2");
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Label, 55, SpringLayout.NORTH, player1Label);
 		this.player3Label = new JLabel("Player 3");
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Label, 55, SpringLayout.NORTH, player2Label);
 		this.player4Label = new JLabel("Player 4");
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Label, 55, SpringLayout.NORTH, player3Label);
 		this.player5Label = new JLabel("Player 5");
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Label, 0, SpringLayout.NORTH, player1Label);
 		this.player6Label = new JLabel("Player 6");
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Label, 0, SpringLayout.NORTH, player2Label);
+		baseLayout.putConstraint(SpringLayout.EAST, player6Label, -213, SpringLayout.EAST, this);
 		this.player7Label = new JLabel("Player 7");
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Label, 0, SpringLayout.NORTH, player3Label);
+		baseLayout.putConstraint(SpringLayout.EAST, player7Label, -213, SpringLayout.EAST, this);
 		this.player8Label = new JLabel("Player 8");
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Label, 0, SpringLayout.NORTH, player4Label);
 		
 		this.player1Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player1Box, -5, SpringLayout.NORTH, player1Label);
 		this.player2Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player2Box, -5, SpringLayout.NORTH, player2Label);
 		this.player3Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player3Box, -5, SpringLayout.NORTH, player3Label);
 		this.player4Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player4Box, -5, SpringLayout.NORTH, player4Label);
 		this.player5Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player5Box, -5, SpringLayout.NORTH, player1Label);
 		this.player6Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player6Box, -5, SpringLayout.NORTH, player2Label);
 		this.player7Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player7Box, -5, SpringLayout.NORTH, player3Label);
 		this.player8Box = new JTextField(4);
+		baseLayout.putConstraint(SpringLayout.NORTH, player8Box, -5, SpringLayout.NORTH, player4Label);
 		
 		this.nextButton = new JButton("Continue to Scorecard");
 		this.submitNames = new JButton("Submit Names");
@@ -130,9 +148,6 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, player8Label, 0, SpringLayout.EAST, player5Label);
 		baseLayout.putConstraint(SpringLayout.WEST, player3Label, 0, SpringLayout.WEST, player1Label);
 		baseLayout.putConstraint(SpringLayout.WEST, player4Label, 0, SpringLayout.WEST, player1Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player6Label, 0, SpringLayout.WEST, player5Label);
-		baseLayout.putConstraint(SpringLayout.EAST, player6Label, 0, SpringLayout.EAST, player5Label);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Label, 0, SpringLayout.WEST, player5Label);
 		baseLayout.putConstraint(SpringLayout.EAST, player5Label, -213, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player1Box, 203, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.WEST, player2Box, 203, SpringLayout.WEST, this);
@@ -140,28 +155,12 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, player4Box, 104, SpringLayout.EAST, player4Label);
 		baseLayout.putConstraint(SpringLayout.WEST, player5Box, 99, SpringLayout.EAST, player5Label);
 		baseLayout.putConstraint(SpringLayout.EAST, player5Box, -56, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Label, 5, SpringLayout.NORTH, player5Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player1Box, 0, SpringLayout.NORTH, player5Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Label, 5, SpringLayout.NORTH, player5Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player6Box, 27, SpringLayout.SOUTH, player5Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player2Label, 5, SpringLayout.NORTH, player6Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player2Box, 0, SpringLayout.NORTH, player6Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player6Label, 5, SpringLayout.NORTH, player6Box);
 		baseLayout.putConstraint(SpringLayout.WEST, player6Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player6Box, -56, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, player3Label, 5, SpringLayout.NORTH, player7Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player3Box, 0, SpringLayout.NORTH, player7Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player7Label, 5, SpringLayout.NORTH, player7Box);
-		baseLayout.putConstraint(SpringLayout.WEST, player7Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player7Box, -56, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, player7Box, -26, SpringLayout.NORTH, player8Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Label, 5, SpringLayout.NORTH, player8Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player4Box, 0, SpringLayout.NORTH, player8Box);
-		baseLayout.putConstraint(SpringLayout.NORTH, player8Label, 5, SpringLayout.NORTH, player8Box);
 		baseLayout.putConstraint(SpringLayout.WEST, player8Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player8Box, -56, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player8Box, -26, SpringLayout.NORTH, nextButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, player5Box, 10, SpringLayout.SOUTH, setupInstructions);
 		baseLayout.putConstraint(SpringLayout.SOUTH, setupInstructions, -262, SpringLayout.SOUTH, this);
 	}
 	
