@@ -139,7 +139,7 @@ public class ScorePanel extends JPanel
 		
 		this.add(setupButton);
 		this.add(scoreRound);
-		this.add(manualOverride);
+		//this.add(manualOverride);
 		
 		this.add(roundNumber);
 		this.add(imageText1);
