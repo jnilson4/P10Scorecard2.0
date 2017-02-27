@@ -469,6 +469,17 @@ public class ScorePanel extends JPanel
 					}
 				}
 				
+//				for(Component temp : getComponents())
+//				{
+//					if(temp instanceof JTextField)
+//					{
+//						if(((JTextField) temp).getText().equals("") && ((JTextField) temp).isValidInteger()))
+//						{
+//							
+//						}
+//					}
+//				}
+				
 				roundPoints[0] = Integer.parseInt(player1Entry.getText());
 				roundPoints[1] = Integer.parseInt(player2Entry.getText());
 				roundPoints[2] = Integer.parseInt(player3Entry.getText());
