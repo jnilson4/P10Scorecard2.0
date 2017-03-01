@@ -35,7 +35,7 @@ public class ScorePanel extends JPanel
 	
 	private JTextArea phaseC1, phaseC2, pointsC1, pointsC2, addPointsC1, addPointsC2, completePC1, completePC2;
 	
-	static MyTraversal newPolicy;
+	private ScorePanelTraversalPolicy newPolicy;
 	
 	public ScorePanel(ScoreController baseController)
 	{
@@ -121,7 +121,8 @@ public class ScorePanel extends JPanel
 		stuff.add(player6Entry);
 		stuff.add(player7Entry);
 		stuff.add(player8Entry);
-		newPolicy = new MyTraversal(stuff);
+		newPolicy = new ScorePanelTraversalPolicy(stuff);
+		baseController.getFrame().setFocusTraversalPolicy(newPolicy);
 
 		setupPanel();
 		setupGUI();
@@ -129,6 +130,7 @@ public class ScorePanel extends JPanel
 		setupLayout5_8();
 		setupLayoutLabels();
 		setupListeners();
+		
 	}
 	
 	private void setupPanel()
@@ -584,48 +586,7 @@ public class ScorePanel extends JPanel
 		});
 	}
 	
-	public static class MyTraversal extends FocusTraversalPolicy
-	{
-		Vector<Component> stuff;
-		
-		public MyTraversal(Vector<Component> stuff)
-		{
-			this.stuff = new Vector<Component>(stuff.size());
-			this.stuff.addAll(stuff);
-		}
-		
-		public Component getComponentAfter(Container focusCycleRoot, Component aComponent)
-		{
-			int idx = (stuff.indexOf(aComponent) + 1) % stuff.size();
-			return stuff.get(idx);
-		}
-		
-		public Component getComponentBefore(Container focusCycleRoot, Component aComponent)
-		{
-			int idx = stuff.indexOf(aComponent) - 1;
-			if(idx < 0)
-			{
-				idx = stuff.size() -1;
-			}
-			
-			return stuff.get(idx);
-		}
-		
-		public Component getDefaultComponent(Container focusCycleRoot)
-		{
-			return stuff.get(0);
-		}
-		
-		public Component getLastComponent(Container focusCycleRoot)
-		{
-			return stuff.lastElement();
-		}
-		
-		public Component getFirstComponent(Container focusCycleRoot)
-		{
-			return stuff.get(0);
-		}
-	}
+	
 	
 	private void clearBlank()
 	{
