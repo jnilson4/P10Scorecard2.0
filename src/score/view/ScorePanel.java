@@ -625,8 +625,6 @@ public class ScorePanel extends JPanel
 		{
 			return stuff.get(0);
 		}
-		
-		
 	}
 	
 	private void clearBlank()
