@@ -2,11 +2,13 @@ package score.view;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import score.controller.ScoreController;
 import java.awt.Font;
 import java.awt.event.*;
 import java.awt.Container;
+import java.util.Vector;
 
 public class SetupPanel extends JPanel
 {
@@ -40,6 +42,8 @@ public class SetupPanel extends JPanel
 	private JLabel imageText1;
 	
 	private JTextArea setupInstructions;
+	
+	private ScorePanelTraversalPolicy newPolicy;
 	
 	public SetupPanel(ScoreController baseController)
 	{
@@ -94,6 +98,18 @@ public class SetupPanel extends JPanel
 		
 		this.helpButton = new ImageIcon(getClass().getResource("/score/view/images/questionMark2.png"));
 		this.imageText1 = new JLabel(" ", helpButton, JLabel.CENTER);
+		
+		Vector<Component> stuff = new Vector<Component>();
+		stuff.add(player1Box);
+		stuff.add(player2Box);
+		stuff.add(player3Box);
+		stuff.add(player4Box);
+		stuff.add(player5Box);
+		stuff.add(player6Box);
+		stuff.add(player7Box);
+		stuff.add(player8Box);
+		newPolicy = new ScorePanelTraversalPolicy(stuff);
+		baseController.getFrame().setFocusTraversalPolicy(newPolicy);
 		
 		setupPanel();
 		setupGUI(); 
