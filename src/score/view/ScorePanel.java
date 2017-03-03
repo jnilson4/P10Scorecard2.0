@@ -19,7 +19,7 @@ public class ScorePanel extends JPanel
 	private JLabel imageText, imageText1, roundNumber;
 	private int round;
 	
-	private JButton setupButton, scoreRound, manualOverride;
+	private JButton setupButton, scoreRound, manualOverride, saveScores, loadScores;
 	
 	private JLabel player1, player2, player3, player4, player5, player6, player7, player8;
 	
@@ -54,6 +54,8 @@ public class ScorePanel extends JPanel
 		this.setupButton = new JButton("Return to Setup");
 		this.scoreRound = new JButton("Score Round");
 		this.manualOverride = new JButton("Manual Override");
+		this.saveScores = new JButton("Save");
+		this.loadScores = new JButton("Load");
 		
 		this.phaseC1 = new JTextArea("Phase");
 		this.pointsC1 = new JTextArea("Points");
@@ -582,10 +584,25 @@ public class ScorePanel extends JPanel
 //				repaint();
 			}
 		});
+	
+		saveScores.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
+		loadScores.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				
+			}
+		});
+		
 	}
-	
-	
-	
+
 	private void clearBlank()
 	{
 		if(player8.getText().equals(""))
