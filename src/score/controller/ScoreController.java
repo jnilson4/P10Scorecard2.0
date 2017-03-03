@@ -1,6 +1,6 @@
 package score.controller;
 
-import score.view.ScoreFrame;
+import score.view.*;
 import score.model.*;
 import javax.swing.JOptionPane;
 
@@ -8,11 +8,13 @@ public class ScoreController
 {
 	private ScoreFrame baseFrame;
 	private Game update;
+	private ScoreViewer scoreView;
 	
 	public ScoreController()
 	{
 		update = new Game();
 		baseFrame = new ScoreFrame(this);
+		scoreView = new ScoreViewer();
 	}
 	
 	public void start()
@@ -120,5 +122,16 @@ public class ScoreController
 		}
 		
 		return isValid;
+	}
+	
+	public void handleErrors(Exception currentException)
+	{
+		scoreView.displayMessage("An error has occured. Details provided next.");
+		scoreView.displayMessage(currentException.getMessage());
+	}
+	
+	public ScoreViewer getPopup()
+	{
+		return scoreView;
 	}
 }

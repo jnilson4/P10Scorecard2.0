@@ -31,5 +31,6 @@ public class ScoreFrame extends JFrame
 		this.setVisible(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 	}
 }
