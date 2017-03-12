@@ -88,6 +88,7 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.NORTH, player6Box, -5, SpringLayout.NORTH, player2Label);
 		this.player7Box = new JTextField(4);
 		baseLayout.putConstraint(SpringLayout.NORTH, player7Box, -5, SpringLayout.NORTH, player3Label);
+		baseLayout.putConstraint(SpringLayout.SOUTH, player7Box, 0, SpringLayout.SOUTH, player3Box);
 		this.player8Box = new JTextField(4);
 		baseLayout.putConstraint(SpringLayout.NORTH, player8Box, -5, SpringLayout.NORTH, player4Label);
 		
@@ -174,7 +175,6 @@ public class SetupPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, player6Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player6Box, -56, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player7Box, -56, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, player7Box, -26, SpringLayout.NORTH, player8Box);
 		baseLayout.putConstraint(SpringLayout.WEST, player8Box, 586, SpringLayout.WEST, this);
 		baseLayout.putConstraint(SpringLayout.EAST, player8Box, -56, SpringLayout.EAST, this);
 		baseLayout.putConstraint(SpringLayout.SOUTH, setupInstructions, -262, SpringLayout.SOUTH, this);
