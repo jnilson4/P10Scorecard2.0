@@ -19,7 +19,7 @@ public class ScoreController
 	
 	public void start()
 	{
-		
+		System.out.println("Program Started");
 	}
 	
 	public ScoreFrame getFrame()
