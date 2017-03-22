@@ -118,7 +118,7 @@ public class ScoreController
 		}
 		catch(NumberFormatException error)
 		{
-			JOptionPane.showMessageDialog(baseFrame, "Please make sure the scores entered only contain numbers.");
+			scoreView.displayMessage("Please make sure the scores entered only contain numbers.");
 		}
 		
 		return isValid;
