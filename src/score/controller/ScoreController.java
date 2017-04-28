@@ -27,6 +27,7 @@ public class ScoreController
 		return baseFrame;
 	}
 	
+	//startAbstraction
 	public void update(String[] names, int[] points, int[] phase)
 	{	
 		for(int i = 0; i < names.length; i++)
@@ -37,6 +38,7 @@ public class ScoreController
 			}
 		}
 	}
+	//endAbstraction
 	
 	public void giveNames(String[] names)
 	{
@@ -46,6 +48,7 @@ public class ScoreController
 		}
 	}
 	
+	//startComplexity
 	public void givePoints(int[] points)
 	{
 		for(int i = 0; i < points.length; i++)
@@ -53,6 +56,7 @@ public class ScoreController
 			update.getPlayer()[i].setPoints(update.getPlayer()[i].getPoints() + points[i]);
 		}
 	}
+	//endComplexity
 	
 	public void givePhases(boolean [] phase)
 	{
