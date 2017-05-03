@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+    <information>
+        <title>Phase 10 Score Card</title>
+        <vendor>Jake Nilson</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="2.1"
+            href="https://github.com/jnilson4/P10Scorecard2.0" />
+        <jar href="ScoreApplet.jar" main="true" />
+
+    </resources>
+    <applet-desc 
+         name="Phase 10 Scorecard"
+         main-class="score.view.MyApplet"
+         width="700"
+         height="400">
+     </applet-desc>
+     <update check="background"/>
+</jnlp>         
