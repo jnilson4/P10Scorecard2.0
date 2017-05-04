@@ -6,7 +6,7 @@
     </information>
     <resources>
         <!-- Application Resources -->
-        <j2se version="2.1"
+        <j2se version="1.5+"
             href="https://github.com/jnilson4/P10Scorecard2.0" />
         <jar href="ScoreApplet.jar" main="true" />
 
